@@ -1,0 +1,16 @@
+from flask import Flask, request
+app = Flask(name)
+
+@app.route('/arduino', methods = ['GET','POST'])
+def arduino():
+    temperatura = request.form.get('temperatura')
+    distancia = request.form.get('distancia')
+    gravaDados(temperatura, distancia)
+    return 'API de requisição de temperatura funcionando: '+ str(temperatura) +' e a distância: '+ str(distancia)
+
+def gravaDados(temperatura, distancia):
+    dados = str(temperatura) + ',' + str(distancia) + '\n'
+    arquivo = open('/home/ale123/mysite/dados/dados_input.csv' ,'a')
+    arquivo.write(dados)
+    arquivo.close()
+    return 'ok'
