@@ -1,0 +1,20 @@
+import pandas as pd
+from hashlib import md5
+import seaborn as srn
+import statistics  as sts
+import matplotlib.pyplot as plt
+dados = pd.read_csv('dados.csv',encoding='unicode_escape', sep = ';')
+dados.head()
+dados.shape
+agrupado = dados.groupby(['temperatura']).size()
+agrupado
+agrupado.plot.bar(color = 'red')
+agrupado1 = dados.groupby(['distancia']).size()
+agrupado1
+agrupado1.plot.bar(color = 'red')
+#criptografar
+n = dados.loc[0]
+print(n)
+n = "senha123".encode("utf8")
+hash = md5(n).hexdigest()
+print(hash)
